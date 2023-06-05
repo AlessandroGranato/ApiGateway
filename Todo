@@ -1,0 +1,4 @@
+Refactor classes trying to use props as routes
+Refactor errors introducing error handler
+Refactor classes introducing lombok annotations (for example remove constructors and replace them with RequiredArgsConstructor)
+Put error handlers for possible errors during the flow (ex: nullpointer in extractJwtToken)
