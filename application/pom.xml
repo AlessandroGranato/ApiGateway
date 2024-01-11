@@ -16,6 +16,17 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.pyrosandro</groupId>
+            <artifactId>common-dto</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.pyrosandro</groupId>
+            <artifactId>common-error</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
