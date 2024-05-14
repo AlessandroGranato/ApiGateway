@@ -20,6 +20,7 @@
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<spring-cloud.version>2021.0.7</spring-cloud.version>
 		<common-bom-version>0.3.0-SNAPSHOT</common-bom-version>
+		<flatten.maven.plugin.version>1.1.0</flatten.maven.plugin.version>
 	</properties>
 
 	<modules>
@@ -109,6 +110,33 @@
 
 	<build>
 		<plugins>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>${flatten.maven.plugin.version}</version>
+				<configuration>
+					<updatePomFile>true</updatePomFile>
+					<flattenMode>resolveCiFriendliesOnly</flattenMode>
+				</configuration>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -158,9 +186,9 @@
 
 	<distributionManagement>
 		<repository>
-			<id>my-github-common</id>
-			<name>GitHub alessandrogranato common repo</name>
-			<url>https://maven.pkg.github.com/alessandrogranato/common</url>
+			<id>my-github-repos</id>
+			<name>GitHub alessandrogranato api gateway repo</name>
+			<url>https://maven.pkg.github.com/alessandrogranato/ApiGateway</url>
 		</repository>
 	</distributionManagement>
 </project>
