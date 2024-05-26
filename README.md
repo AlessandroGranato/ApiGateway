@@ -7,6 +7,13 @@ The steps to run the application in docker are the following:
 ### Ensure you have a working Docker instance
 Ensure that Docker Desktop or similar are active.
 
+### Ensure you have a docker builder for multiplatforms
+If you don't have it, run the following command:
+```
+docker buildx create --name my-multiplatform-builder --driver docker-container --use
+docker buildx inspect my-multiplatform-builder --bootstrap
+```
+
 ### Ensure you have a docker network already up
 If you don't have it, run the following command:
 ```
@@ -61,12 +68,12 @@ mvn clean deploy
 ### Deploy docker images on dockerhub
 To deploy application and db docker images, go on parent pom folder and launch the following command:
 ```
-mvn clean deploy -Plocal-image -Pdeploy-docker-image
+mvn clean deploy -Pbuild-and-deploy-docker-image
 ```
 This command will create the docker images from packager and packager-db submodules using the profile local-image, then they will be deployed using the profile deploy-docker-image.
 
 ### Deploy artifacts and docker images all at once
 Since with mvn clean deploy we push artifacts on github packages and adding -Plocal-image and -Pdeploy-doker-image we add profiles to create and push docker images on docker repos, we can simply go in parent folder (where there is parent pom.xml file) and launch the following command to upload everything together. (Yes, it's equal to the previous command)
 ```
-mvn clean deploy -Plocal-image -Pdeploy-docker-image
+mvn clean deploy -Pbuild-and-deploy-docker-image
 ```
