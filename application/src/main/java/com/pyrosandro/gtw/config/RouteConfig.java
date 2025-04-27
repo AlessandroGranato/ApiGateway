@@ -55,7 +55,14 @@ public class RouteConfig {
                 .route(r -> r.path("/bds/api/temperatures/{id}")
                         .filters(f -> f.filter(authFilter))
                         .uri("lb://BDS-SERVICE"))
+                .route(r -> r.path("/bds/api/users/user-identifier/{userIdentifier}")
+                        .filters(f -> f.filter(authFilter))
+                        .uri("lb://BDS-SERVICE"))
+                .route(r -> r.path("/bds/api/temperatures/device/*")
+                        .filters(f -> f.filter(authFilter))
+                        .uri("lb://BDS-SERVICE"))
                 .route(r -> r.path("/bds/api/temperatures").uri("lb://BDS-SERVICE"))
+
 //                  Used to keep track of rewrite param. Should not be useful anymore
 //                .route(r -> r.path("/auth/api/auth/{param1}/test/{param2}")
 //                        .filters(f ->
